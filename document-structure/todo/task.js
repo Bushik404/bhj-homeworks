@@ -1,10 +1,10 @@
 let input = document.getElementById("task__input")
+let form = document.querySelector('.tasks__control')
 let begin = document.getElementById("tasks__list")
-input.addEventListener('keydown',(e)=>{
-    if(e.key === "Enter"){
+form.addEventListener('submit',(e)=>{
+        e.preventDefault()
        if(input.value === ""){
-        return;
-       }
+       }else{
         begin.insertAdjacentHTML("afterbegin",'<div class="task"></div>');
         let task = document.querySelector(".task")
         task.insertAdjacentHTML("afterbegin", '<div class="task__title"></div>');
@@ -13,7 +13,7 @@ input.addEventListener('keydown',(e)=>{
         input.value = "";
         let cross = document.querySelector(".task__remove")
         cross.addEventListener('click',()=>{
-        task.remove()
-    })
-}
+        task.remove() 
+        })
+    }
 })
