@@ -5,12 +5,11 @@ if(localStorage.getItem("id")){
     document.querySelector('.signin_active').classList.remove('signin_active')
     document.querySelector('.welcome').classList.add('welcome_active')
     document.getElementById('user_id').textContent = localStorage.getItem("id");
-}else{
+}
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     const f = new FormData(form)
-    xhr.addEventListener('readystatechange',()=>{
-        if(xhr.readyState === xhr.DONE){
+    xhr.addEventListener('load',()=>{
             let parse = JSON.parse(xhr.response)
             if(parse.success){
                 document.querySelector('.signin_active').classList.remove('signin_active')
@@ -20,8 +19,6 @@ form.addEventListener('submit',(e)=>{
             }else{
                 alert('Неверный логин/пароль')
             }
-        }
     })
     xhr.send(f)
 })
-}
